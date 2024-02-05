@@ -193,7 +193,7 @@ def convert_code_block(html):
 
             conf_ml = '<ac:structured-macro ac:name="code">'
             conf_ml = conf_ml + '<ac:parameter ac:name="theme">Midnight</ac:parameter>'
-            conf_ml = conf_ml + '<ac:parameter ac:name="linenumbers">true</ac:parameter>'
+            conf_ml = conf_ml + '<ac:parameter ac:name="linenumbers">false</ac:parameter>'
 
             lang = re.search('code class="language-(.*)"', tag)
             if lang:
