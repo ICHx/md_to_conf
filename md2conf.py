@@ -117,7 +117,7 @@ try:
         LOGGER.error('Error: Username not specified by environment variable or option.')
         sys.exit(1)
 
-    if API_KEY is None:
+    if API_KEY is None or PA_TOKEN is None:
         LOGGER.error('Error: API key not specified by environment variable or option.')
         sys.exit(1)
 
