@@ -117,7 +117,9 @@ try:
         LOGGER.error('Error: Username not specified by environment variable or option.')
         sys.exit(1)
 
-    if API_KEY is None or PA_TOKEN is None:
+    if API_KEY is None and PA_TOKEN is None:
+        LOGGER.info("API_KEY: %s", not not API_KEY)
+        LOGGER.info("PA_TOKEN: %s", not not PA_TOKEN)
         LOGGER.error('Error: API key not specified by environment variable or option.')
         sys.exit(1)
 
@@ -423,6 +425,7 @@ def get_page(title):
     session = requests.Session()
 
     if PA_TOKEN:
+        logging.info('Using Personal Access Token')
         session.headers.update({'Authorization': 'Bearer ' + PA_TOKEN})
     else:
         session.auth = (USERNAME, API_KEY)
@@ -440,7 +443,7 @@ def get_page(title):
     adapter = requests.adapters.HTTPAdapter(max_retries=retry)
     session.mount('http://', adapter)
     session.mount('https://', adapter)
-    session.auth = (USERNAME, API_KEY)
+    # session.auth = (USERNAME, API_KEY)
 
     response = session.get(url)
 
