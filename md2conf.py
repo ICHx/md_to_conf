@@ -197,8 +197,8 @@ def convert_code_block(html):
 
             lang = re.search(r'code class="language-(.*?)"', tag)
             if lang:
-                lang = lang.group(1)
                 logging.debug('lang: %s', lang)
+                lang = lang.group(1)
             else:
                 lang = 'none'
 
@@ -995,7 +995,10 @@ def main():
 
     with codecs.open(MARKDOWN_FILE, 'r', 'utf-8') as mdfile:
         html = mdfile.read()
-        html = markdown.markdown(html, extensions=['tables', 'fenced_code', 'footnotes', 'pymdownx.superfences'])
+        html = markdown.markdown(html, extensions=['tables',
+                                                   'fenced_code',
+                                                   'footnotes',
+                                                   'pymdownx.superfences'])
 
     if not TITLE:
         html = '\n'.join(html.split('\n')[1:])
