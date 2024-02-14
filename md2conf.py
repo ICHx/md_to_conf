@@ -1042,6 +1042,12 @@ def main():
 
     if SIMULATE:
         LOGGER.info("Simulate mode is active - stop processing here.")
+        import tempfile
+        tmpdir=tempfile.gettempdir()
+        tmpfile = f'{tmpdir}/{MARKDOWN_FILE}'
+        with open(tmpfile,'w',encoding='utf-8-sig') as f:
+            f.write(html)
+            LOGGER.info(f"written to {tmpfile}")
         sys.exit(0)
 
     LOGGER.info('Checking if Atlas page exists...')
