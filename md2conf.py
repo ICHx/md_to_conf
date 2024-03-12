@@ -312,7 +312,7 @@ def convert_doctoc(html):
     </ac:structured-macro>
     </p>'''
 
-    html = re.sub('\<\!\-\- START doctoc.*END doctoc \-\-\>', toc_tag, html, flags=re.DOTALL)
+    html = re.sub(r'\<\!\-\- START doctoc.*END doctoc \-\-\>', toc_tag, html, flags=re.DOTALL)
 
     return html
 
@@ -325,14 +325,14 @@ def strip_type(tag, tagtype):
     :param tagtype: tag type
     :return: modified tag
     """
-    tag = re.sub('%s:\s' % tagtype, '', tag.strip(), re.IGNORECASE)
-    tag = re.sub('%s\s:\s' % tagtype, '', tag.strip(), re.IGNORECASE)
-    tag = re.sub('<.*?>%s:\s<.*?>' % tagtype, '', tag, re.IGNORECASE)
-    tag = re.sub('<.*?>%s\s:\s<.*?>' % tagtype, '', tag, re.IGNORECASE)
-    tag = re.sub('<(em|strong)>%s:<.*?>\s' % tagtype, '', tag, re.IGNORECASE)
-    tag = re.sub('<(em|strong)>%s\s:<.*?>\s' % tagtype, '', tag, re.IGNORECASE)
-    tag = re.sub('<(em|strong)>%s<.*?>:\s' % tagtype, '', tag, re.IGNORECASE)
-    tag = re.sub('<(em|strong)>%s\s<.*?>:\s' % tagtype, '', tag, re.IGNORECASE)
+    tag = re.sub(r'%s:\s' % tagtype, '', tag.strip(), re.IGNORECASE)
+    tag = re.sub(r'%s\s:\s' % tagtype, '', tag.strip(), re.IGNORECASE)
+    tag = re.sub(r'<.*?>%s:\s<.*?>' % tagtype, '', tag, re.IGNORECASE)
+    tag = re.sub(r'<.*?>%s\s:\s<.*?>' % tagtype, '', tag, re.IGNORECASE)
+    tag = re.sub(r'<(em|strong)>%s:<.*?>\s' % tagtype, '', tag, re.IGNORECASE)
+    tag = re.sub(r'<(em|strong)>%s\s:<.*?>\s' % tagtype, '', tag, re.IGNORECASE)
+    tag = re.sub(r'<(em|strong)>%s<.*?>:\s' % tagtype, '', tag, re.IGNORECASE)
+    tag = re.sub(r'<(em|strong)>%s\s<.*?>:\s' % tagtype, '', tag, re.IGNORECASE)
     string_start = re.search('<.*?>', tag)
     tag = upper_chars(tag, [string_start.end()])
     return tag
